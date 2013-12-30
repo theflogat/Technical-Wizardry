@@ -1,14 +1,26 @@
 package fr.theflogat.technicalWizardry.items.runes;
 
+import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import fr.theflogat.technicalWizardry.TechnicalWizardry;
-import fr.theflogat.technicalWizardry.events.FillRuneEvent;
+import fr.theflogat.technicalWizardry.api.BlockRuneAssigner;
+import fr.theflogat.technicalWizardry.api.BlockRuneAssigner.Value;
+import fr.theflogat.technicalWizardry.api.ItemObjectTWU;
+import fr.theflogat.technicalWizardry.api.RuneValueHelper;
+import fr.theflogat.technicalWizardry.events.ItemRuneTWUEvent;
 import fr.theflogat.technicalWizardry.items.Items;
+import fr.theflogat.technicalWizardry.lib.References;
 import fr.theflogat.technicalWizardry.lib.config.Ids;
 import fr.theflogat.technicalWizardry.lib.config.Names;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
@@ -16,6 +28,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,9 +47,8 @@ public class Rune extends Item{
 	
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        boolean flag = this.metatdata == 0;
         
-        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, flag);
+        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
 
         if (movingobjectposition == null)
         {
@@ -44,7 +56,7 @@ public class Rune extends Item{
         }
         else
         {
-            FillRuneEvent event = new FillRuneEvent(par3EntityPlayer, par1ItemStack, par2World, movingobjectposition);
+        	ItemRuneTWUEvent event = new ItemRuneTWUEvent(par3EntityPlayer, par1ItemStack, par2World, movingobjectposition);
             if (MinecraftForge.EVENT_BUS.post(event))
             {
                 return par1ItemStack;
@@ -88,139 +100,32 @@ public class Rune extends Item{
                         return par1ItemStack;
                     }
 
-                    if (par2World.getBlockMaterial(i, j, k) == Material.water && par2World.getBlockMetadata(i, j, k) == 0)
-                    {
-                        par2World.setBlockToAir(i, j, k);
-
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                            return new ItemStack(Items.RuneWater);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneWater)))
-                        {
-                            par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneWater, 1, 0));
-                        }
-
-                        return par1ItemStack;
-                    }
-
-                    if (par2World.getBlockMaterial(i, j, k) == Material.lava && par2World.getBlockMetadata(i, j, k) == 0)
-                    {
-                        par2World.setBlockToAir(i, j, k);
-
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                            return new ItemStack(Items.RuneLava);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneLava)))
-                        {
-                            par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneLava, 1, 0));
-                        }
-
-                        return par1ItemStack;
-                    }
-                    if (par2World.getBlockId(i, j, k) == Block.grass.blockID && par2World.getBlockMetadata(i, j, k) == 0) {
-                    	
-                    	par2World.setBlockToAir(i, j, k);
-                    	
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                        	return new ItemStack(Items.RuneEarth);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneEarth)))
-                        {
-                        	par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneEarth, 1, 0));
-                        }	
-                    	
-                        return par1ItemStack;
-                    }
-                    
-                    if (par2World.getBlockId(i, j, k) == Block.wood.blockID || par2World.getBlockId(i, j, k) == Block.sapling.blockID || par2World.getBlockId(i, j, k) == Block.grass.blockID) {
-                    	
-                    	par2World.setBlockToAir(i, j, k);
-                    	
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                        	return new ItemStack(Items.RuneLife);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneLife)))
-                        {
-                        	par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneLife, 1, 0));
-                        }	
-                    	
-                        return par1ItemStack;
-                    }
-                    if (par2World.getBlockId(i, j, k) == Block.slowSand.blockID || par2World.getBlockId(i, j, k) == Block.netherBrick.blockID){
-                    	
-                    	par2World.setBlockToAir(i, j, k);
-                    	
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                        	return new ItemStack(Items.RuneDeath);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneDeath)))
-                        {
-                        	par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneDeath, 1, 0));
-                        }	
-                    	
-                        return par1ItemStack;
-                    }
-                    if (par2World.getBlockId(i, j, k) == Ids.actualFeatherBlock){
-                    	
-                    	par2World.setBlockToAir(i, j, k);
-                    	
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                        	return new ItemStack(Items.RuneAir);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneAir)))
-                        {
-                        	par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneAir, 1, 0));
-                        }	
-                    	
-                        return par1ItemStack;
-                    }
-                    if (par2World.getBlockId(i, j, k) == Block.obsidian.blockID){
-                    	
-                    	par2World.setBlockToAir(i, j, k);
-                    	
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                        	return new ItemStack(Items.RuneObscurous);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneObscurous)))
-                        {
-                        	par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneObscurous, 1, 0));
-                        }	
-                    	
-                        return par1ItemStack;
-                    }
-                    if (par2World.getBlockId(i, j, k) == Block.glowStone.blockID){
-                    	
-                    	par2World.setBlockToAir(i, j, k);
-                    	
-                        if (--par1ItemStack.stackSize <= 0)
-                        {
-                        	return new ItemStack(Items.RuneLight);
-                        }
-
-                        if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.RuneLight)))
-                        {
-                        	par3EntityPlayer.dropPlayerItem(new ItemStack(Ids.actualRuneLight, 1, 0));
-                        }	
-                    	
-                        return par1ItemStack;
-                    }
+                    RuneValueHelper.evaluation(par1ItemStack, par2World, par3EntityPlayer, i, j, k);
+                	
                 }
             }
         }
 		return par1ItemStack;
     }
+    
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    	if(Keyboard.isKeyDown(42)){
+    		par3List.add("On right-click on a block it will");
+    		par3List.add("yield a rune with the same properties");
+    	} else {
+    		par3List.add("--Press Shift For More Info--");
+    	}
+    }
+    
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister icon) {
+		itemIcon = icon.registerIcon(References.MOD_ID.toLowerCase() + ":" + Names.Rune_UnlocalizedName);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIconFromDamage(int damage) {
+		return itemIcon;
+	}
 }

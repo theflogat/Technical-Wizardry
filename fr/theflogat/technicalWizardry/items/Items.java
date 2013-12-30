@@ -5,86 +5,71 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import fr.theflogat.technicalWizardry.lib.config.Ids;
 import fr.theflogat.technicalWizardry.lib.config.Names;
 import net.minecraft.block.Block;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import fr.theflogat.technicalWizardry.blocks.Blocks;
+import fr.theflogat.technicalWizardry.items.bound.PlayerLink;
 import fr.theflogat.technicalWizardry.items.runes.*;
+import fr.theflogat.technicalWizardry.api.BlockObjectTWU;
+import fr.theflogat.technicalWizardry.api.BlockRuneAssigner;
+import fr.theflogat.technicalWizardry.api.BlockRuneAssigner.Value;
+import fr.theflogat.technicalWizardry.api.ItemObjectTWU;;
 
 public class Items {
 	
-	public static Item DimensionalLife;
-	public static Item Sacrificer;
-	public static Item JarOfLife;
-	public static Item Rune;
-	public static Item RuneWater;
-	public static Item RuneLava;
-	public static Item RuneEarth;
-	public static Item RuneDeath;
-	public static Item RuneLife;
-	public static Item RuneAir;
-	public static Item RuneLight;
-	public static Item RuneObscurous;	
-	public static Item RuneChaos_Meta;
-	public static Item RuneAssembler;
-	
 	public static void init(){
 		
-		DimensionalLife = new DimensionalLife(Ids.actualDimensionalLife);
-		Sacrificer = new Sacrificer(Ids.actualSacrificer);
-		JarOfLife = new JarOfLife(Ids.actualJarOfLife);
-		Rune = new Rune(Ids.actualRune);
-		RuneWater = new RuneWater(Ids.actualRuneWater);	
-		RuneLava = new RuneLava(Ids.actualRuneLava);
-		RuneEarth = new RuneEarth(Ids.actualRuneEarth);
-		RuneDeath = new RuneDeath(Ids.actualRuneDeath);
-		RuneLife = new RuneLife(Ids.actualRuneLife);
-		RuneAir = new RuneAir(Ids.actualRuneAir);
-		RuneLight = new RuneLight(Ids.actualRuneLight);
-		RuneObscurous = new RuneObscurous(Ids.actualRuneObscurous);
-		RuneChaos_Meta = new RunesChaos(Ids.actualRuneChaos_Meta);
-		RuneAssembler = new RuneAssembler(Ids.actualRuneAssembler);
-		
-		initRecipes();
-	}
-	
-	private static void initRecipes(){
-		GameRegistry.addRecipe(new ItemStack(Items.Rune, 1), new Object[]{
-		"CCC",
-		"CIC",	
-		"CCC",
-		'C', Block.cobblestone, 'I', Item.clay
-		});
-		GameRegistry.addRecipe(new ItemStack(Items.RuneAssembler, 1), new Object[]{
-		"B B",
-		"bFb",
-		"B B",
-		'F', Block.furnaceIdle, 'b', Item.blazePowder,'B', Item.blazeRod
-		});
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.RuneChaos_Meta, 1, 0), new Object[]{
-		Items.RuneAssembler, Items.RuneLava, Items.RuneWater
-		});
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.RuneChaos_Meta, 1, 1), new Object[]{
-		Items.RuneAssembler, Items.RuneAir, Items.RuneEarth
-		});
-		
+		ItemObjectTWU.DimensionalLife = new DimensionalLife(Ids.actualDimensionalLife);
+		ItemObjectTWU.Sacrificer = new Sacrificer(Ids.actualSacrificer);
+		ItemObjectTWU.JarOfLife = new JarOfLife(Ids.actualJarOfLife);
+		ItemObjectTWU.Rune = new Rune(Ids.actualRune);
+		ItemObjectTWU.RuneWater = new RuneWater(Ids.actualRuneWater);	
+		ItemObjectTWU.RuneLava = new RuneLava(Ids.actualRuneLava);
+		ItemObjectTWU.RuneEarth = new RuneEarth(Ids.actualRuneEarth);
+		ItemObjectTWU.RuneDeath = new RuneDeath(Ids.actualRuneDeath);
+		ItemObjectTWU.RuneLife = new RuneLife(Ids.actualRuneLife);
+		ItemObjectTWU.RuneAir = new RuneAir(Ids.actualRuneAir);
+		ItemObjectTWU.RuneLight = new RuneLight(Ids.actualRuneLight);
+		ItemObjectTWU.RuneObscurous = new RuneObscurous(Ids.actualRuneObscurous);
+		ItemObjectTWU.RuneChaos_Meta = new RunesChaos(Ids.actualRuneChaos_Meta);
+		ItemObjectTWU.RuneAssembler = new RuneAssembler(Ids.actualRuneAssembler);
+		ItemObjectTWU.SpeedyBread = new SpeedyBread(Ids.actualSpeedyBread);
+		ItemObjectTWU.SpeedUpgrade = new SpeedUpgrade(Ids.actualSpeedUpgrade);
+		ItemObjectTWU.MovementAmulet = new MovementAmulet(Ids.actualMovementAmulet);
+		ItemObjectTWU.SmoothCutter = new SmoothCutter(Ids.actualSmoothCutter);
+		ItemObjectTWU.LapidemMagica = new LapidemMagica(Ids.actualLapidemMagica);
+		ItemObjectTWU.PlayerLink = new PlayerLink(Ids.actualPlayerLink);
+		ItemObjectTWU.InformationReader = new InformationReader(Ids.actualInformationReader);
 	}
 	
 	public static void addNames(){
-		LanguageRegistry.addName(DimensionalLife, Names.DimensionalLife_ItemName);
-		LanguageRegistry.addName(Sacrificer, Names.Sacrificer_ItemName);
-		LanguageRegistry.addName(JarOfLife, Names.JarOfLife_ItemName);
-		LanguageRegistry.addName(Rune, Names.Rune_ItemName);
-		LanguageRegistry.addName(RuneWater, Names.RuneWater_ItemName);
-		LanguageRegistry.addName(RuneLava, Names.RuneLava_ItemName);
-		LanguageRegistry.addName(RuneEarth, Names.RuneEarth_ItemName);
-		LanguageRegistry.addName(RuneDeath, Names.RuneDeath_ItemName);
-		LanguageRegistry.addName(RuneLife, Names.RuneLife_ItemName);
-		LanguageRegistry.addName(RuneAir, Names.RuneAir_ItemName);
-		LanguageRegistry.addName(RuneLight, Names.RuneLight_ItemName);
-		LanguageRegistry.addName(RuneObscurous, Names.RuneObscurous_ItemName);
-		LanguageRegistry.addName(RuneAssembler, Names.RuneAssembler_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.DimensionalLife, Names.DimensionalLife_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.Sacrificer, Names.Sacrificer_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.JarOfLife, Names.JarOfLife_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.Rune, Names.Rune_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneWater, Names.RuneWater_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneLava, Names.RuneLava_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneEarth, Names.RuneEarth_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneDeath, Names.RuneDeath_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneLife, Names.RuneLife_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneAir, Names.RuneAir_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneLight, Names.RuneLight_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneObscurous, Names.RuneObscurous_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.RuneAssembler, Names.RuneAssembler_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.SpeedyBread, Names.SpeedyBread_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.SmoothCutter, Names.SmoothCutter_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.LapidemMagica, Names.LapidemMagica_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.SpeedUpgrade, Names.SpeedUpgrade_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.PlayerLink, Names.PlayerLink_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.InformationReader, Names.InformationReader_ItemName);
+		
 		//MetaItems
 		for(int i = 0; i < Names.RuneChaos_MetaItemName.length; i++) {
-			LanguageRegistry.addName(new ItemStack(RuneChaos_Meta, 1, i), Names.RuneChaos_MetaItemName[i]);
+			LanguageRegistry.addName(new ItemStack(ItemObjectTWU.RuneChaos_Meta, 1, i), Names.RuneChaos_MetaItemName[i]);
+		}
+		for(int i = 0; i < Names.MovementAmulet_MetaItemName.length; i++) {
+			LanguageRegistry.addName(new ItemStack(ItemObjectTWU.MovementAmulet, 1, i), Names.MovementAmulet_MetaItemName[i]);
 		}
 	}
 }
