@@ -67,6 +67,9 @@ public class Ids {
 	
 	public static final int baseInformationReader= 13021;
 	public static int actualInformationReader;
+	
+	public static final int baseItemSpell= 13022;
+	public static int actualItemSpell;
 	//Blocks
 	public static final int baseForge = 4000;
 	public static int actualForge;
@@ -124,5 +127,7 @@ public class Ids {
 	
 	public static final int basePlayerLinkedBlock = 4017;
 	public static int actualPlayerLinkedBlock;
-
+	
+	//Entities
+	public static final int ProjectileEntity = 1;
 }

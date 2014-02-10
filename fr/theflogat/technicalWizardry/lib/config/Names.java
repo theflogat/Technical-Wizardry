@@ -1,5 +1,7 @@
 package fr.theflogat.technicalWizardry.lib.config;
 
+import fr.theflogat.technicalWizardry.lib.References;
+
 public class Names {
 	//Items
 	public static final String DimensionalLife_ItemName = "DimensionalLife";
@@ -61,6 +63,9 @@ public class Names {
 	
 	public static final String InformationReader_ItemName = "Information Reader";
 	public static final String InformationReader_UnlocalizedName = "itemInformationReader";
+	
+	public static final String ItemSpell_ItemName = "Spell";
+	public static final String ItemSpell_UnlocalizedName = "itemItemSpell";
 	//Blocks
 	public static final String Forge_BlockName = "Forge";
 	public static final String Forge_UnlocalizedName = "blockForge";
@@ -158,4 +163,7 @@ public class Names {
 
 	public static final String SpecificItemInserter_BlockName = "Specific Item Inserter";
 	public static final String SpecificItemInserter_UnlocalizedName = "blockSpecificItemInserter";
+	
+	//Entities
+	public static final String Projectile_EntityName = References.MOD_ID + ":" + "Projectile";
 }

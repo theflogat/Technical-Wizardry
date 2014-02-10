@@ -24,4 +24,5 @@ public class ItemObjectTWU {
 	public static Item LapidemMagica;
 	public static Item PlayerLink;
 	public static Item InformationReader;
+	public static Item ItemSpell;
 }

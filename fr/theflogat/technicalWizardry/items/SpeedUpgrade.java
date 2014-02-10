@@ -3,7 +3,6 @@ package fr.theflogat.technicalWizardry.items;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fr.theflogat.technicalWizardry.TechnicalWizardry;
-import fr.theflogat.technicalWizardry.entity.MagicTransportationAeroplane;
 import fr.theflogat.technicalWizardry.events.ItemSpeedUpgradeTWUEvent;
 import fr.theflogat.technicalWizardry.lib.References;
 import fr.theflogat.technicalWizardry.lib.config.Names;

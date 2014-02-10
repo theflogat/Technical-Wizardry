@@ -9,8 +9,9 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import fr.theflogat.technicalWizardry.blocks.Blocks;
-import fr.theflogat.technicalWizardry.items.bound.PlayerLink;
 import fr.theflogat.technicalWizardry.items.runes.*;
+import fr.theflogat.technicalWizardry.items.bound.*;
+import fr.theflogat.technicalWizardry.items.spells.*;
 import fr.theflogat.technicalWizardry.api.BlockObjectTWU;
 import fr.theflogat.technicalWizardry.api.BlockRuneAssigner;
 import fr.theflogat.technicalWizardry.api.BlockRuneAssigner.Value;
@@ -41,6 +42,7 @@ public class Items {
 		ItemObjectTWU.LapidemMagica = new LapidemMagica(Ids.actualLapidemMagica);
 		ItemObjectTWU.PlayerLink = new PlayerLink(Ids.actualPlayerLink);
 		ItemObjectTWU.InformationReader = new InformationReader(Ids.actualInformationReader);
+		ItemObjectTWU.ItemSpell = new ItemSpell(Ids.actualItemSpell);
 	}
 	
 	public static void addNames(){
@@ -63,6 +65,7 @@ public class Items {
 		LanguageRegistry.addName(ItemObjectTWU.SpeedUpgrade, Names.SpeedUpgrade_ItemName);
 		LanguageRegistry.addName(ItemObjectTWU.PlayerLink, Names.PlayerLink_ItemName);
 		LanguageRegistry.addName(ItemObjectTWU.InformationReader, Names.InformationReader_ItemName);
+		LanguageRegistry.addName(ItemObjectTWU.ItemSpell, Names.ItemSpell_ItemName);
 		
 		//MetaItems
 		for(int i = 0; i < Names.RuneChaos_MetaItemName.length; i++) {

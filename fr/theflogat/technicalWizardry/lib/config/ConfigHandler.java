@@ -53,6 +53,7 @@ public class ConfigHandler {
 		Ids.actualSpeedUpgrade = config.getItem(config.CATEGORY_ITEM, Names.SpeedUpgrade_ItemName, Ids.baseSpeedUpgrade).getInt() - 256;
 		Ids.actualPlayerLink = config.getItem(config.CATEGORY_ITEM, Names.PlayerLink_ItemName, Ids.basePlayerLink).getInt() - 256;
 		Ids.actualInformationReader = config.getItem(config.CATEGORY_ITEM, Names.InformationReader_ItemName, Ids.baseInformationReader).getInt() - 256;
+		Ids.actualItemSpell = config.getItem(config.CATEGORY_ITEM, Names.ItemSpell_ItemName, Ids.baseItemSpell).getInt() - 256;
 
 		//RetroGen
 		config.addCustomCategoryComment("Retrogen", "Regen Ores In An Already Present World");

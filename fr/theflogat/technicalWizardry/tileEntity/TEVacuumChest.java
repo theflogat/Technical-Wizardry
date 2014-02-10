@@ -37,7 +37,7 @@ public class TEVacuumChest extends TETWU{
 				double x1 = xCoord + 0.5;
 				double y1 = yCoord + 0.5;
 				double z1 = zCoord + 0.5;	
-				int range = 20;
+				int range = 7;
 				
 				AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(x1 - range, y1 - range, z1 - range, x1 + range, y1 + range, z1 + range);
 				List<Entity> entities = worldObj.getEntitiesWithinAABB(Entity.class, boundingBox);
@@ -75,8 +75,10 @@ public class TEVacuumChest extends TETWU{
         			ItemStack stack = ((EntityItem)entity).getEntityItem();
         			Coordinates crds = getCoords();
         			crds.setY(crds.getY()+1);
-        			TWUUtils.spawnItemStack(crds, InventoryManagement.tryInsertInInvSpcReturnForEntItem(this, stack), worldObj);
-        			entity.setDead();
+        			if(!entity.isDead){
+            			TWUUtils.spawnItemStack(crds, InventoryManagement.tryInsertInInvSpcReturnForEntItem(this, stack), worldObj);
+            			entity.setDead();
+        			}
         		}
         	}
 	    }

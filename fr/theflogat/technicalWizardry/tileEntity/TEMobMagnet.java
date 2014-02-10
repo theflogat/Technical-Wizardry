@@ -2,9 +2,7 @@ package fr.theflogat.technicalWizardry.tileEntity;
 
 import java.util.List;
 
-import fr.theflogat.technicalWizardry.handler.sync.PacketItemInserterSync;
 import fr.theflogat.technicalWizardry.handler.sync.PacketManager;
-import fr.theflogat.technicalWizardry.handler.sync.PacketMobMagnetSync;
 import fr.theflogat.technicalWizardry.vec.Vector;
 
 import net.minecraft.entity.Entity;
@@ -70,11 +68,6 @@ public class TEMobMagnet extends TETWU{
 		entity.motionX = finalVector.x * modifier;
 		entity.motionY = finalVector.y * modifier;
 		entity.motionZ = finalVector.z * modifier;
-	}
-
-	@Override
-	public Packet getDescriptionPacket() {
-		return PacketManager.generatePacket(new PacketMobMagnetSync(this));
 	}
 	
 	@Override

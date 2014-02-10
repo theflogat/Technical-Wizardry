@@ -25,6 +25,7 @@ import fr.theflogat.technicalWizardry.entity.Entities;
 import fr.theflogat.technicalWizardry.handler.CreativeTabTWU;
 import fr.theflogat.technicalWizardry.handler.MiscHandler;
 import fr.theflogat.technicalWizardry.handler.Recipes;
+import fr.theflogat.technicalWizardry.handler.sync.PacketManager;
 import fr.theflogat.technicalWizardry.items.Items;
 import fr.theflogat.technicalWizardry.lib.*;
 import fr.theflogat.technicalWizardry.lib.config.ConfigHandler;
@@ -34,7 +35,7 @@ import fr.theflogat.technicalWizardry.world.WorldGeneratorTWU;
 
 @Mod( modid = References.MOD_ID, name = References.MOD_NAME, version = References.MOD_VERSION)
 
-@NetworkMod( channels = {References.CHANNEL}, clientSideRequired = true, serverSideRequired = true )
+@NetworkMod( channels = {References.CHANNEL}, clientSideRequired = true, packetHandler = PacketManager.class)
 
 public class TechnicalWizardry {
 	

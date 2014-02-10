@@ -10,7 +10,6 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 
-import fr.theflogat.technicalWizardry.handler.sync.PacketItemInserterSync;
 import fr.theflogat.technicalWizardry.handler.sync.PacketManager;
 import fr.theflogat.technicalWizardry.lib.LogHelper;
 import fr.theflogat.technicalWizardry.util.Coordinates;
